@@ -5,6 +5,7 @@
 version: 2
 
 # Set the OS, Python version, and other tools you might need
+# https://docs.readthedocs.com/platform/latest/build-customization.html#install-dependencies-with-uv
 build:
   os: ubuntu-24.04
   tools:
@@ -15,12 +16,9 @@ build:
       - asdf install uv latest
       - asdf global uv latest
     create_environment:
-       - uv venv "${READTHEDOCS_VIRTUALENV_PATH}"
+      - uv venv "${READTHEDOCS_VIRTUALENV_PATH}"
     install:
-       - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv sync --frozen --group docs
-    build:
-      html:
-        - NO_COLOR=1 uv run --no-sync mkdocs build --strict --site-dir $READTHEDOCS_OUTPUT/html
+      - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv sync --frozen --group docs
 
 # Build documentation with Mkdocs
 mkdocs:
