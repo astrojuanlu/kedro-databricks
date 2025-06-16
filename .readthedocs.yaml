@@ -14,7 +14,6 @@ build:
     pre_create_environment:
       - asdf plugin add uv
       - asdf install uv
-      - asdf global uv
     create_environment:
       - uv venv "${READTHEDOCS_VIRTUALENV_PATH}"
     install:
